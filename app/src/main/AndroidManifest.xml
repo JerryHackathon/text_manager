@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".initializers.MyActivity"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -23,7 +24,9 @@
 
         <receiver android:name=".receiver.AlarmReceiver" />
 
-        <activity android:name=".activities.ScheduleActivity"></activity>
+        <activity android:name=".activities.ScheduleActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.SignUpActivity"></activity>
     </application>
 
 </manifest>

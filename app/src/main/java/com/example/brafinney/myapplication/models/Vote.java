@@ -5,42 +5,28 @@ package com.example.brafinney.myapplication.models;
  */
 
 public class Vote {
-    String id, voterId, votedFor, numberOfVotes;
+    String id, contestant_id, voteCount;
 
-    public Vote(String voterId, String votedFor, String numberOfVotes) {
-        this.voterId = voterId;
-        this.votedFor = votedFor;
-        this.numberOfVotes = numberOfVotes;
-    }
-
-    public Vote(String id, String voterId, String votedFor, String numberOfVotes) {
+    public Vote(String id, String contestant_id, String voteCount) {
         this.id = id;
-        this.voterId = voterId;
-        this.votedFor = votedFor;
-        this.numberOfVotes = numberOfVotes;
+        this.contestant_id = contestant_id;
+        this.voteCount = voteCount;
     }
 
-    public String getVoterId() {
-        return voterId;
+    public Vote(String contestant_id, String voteCount) {
+        this.contestant_id = contestant_id;
+        this.voteCount = voteCount;
     }
 
-    public void setVoterId(String voterId) {
-        this.voterId = voterId;
+    public String getId() {
+        return id;
     }
 
-    public String getVotedFor() {
-        return votedFor;
+    public String getContestant_id() {
+        return contestant_id;
     }
 
-    public void setVotedFor(String votedFor) {
-        this.votedFor = votedFor;
-    }
-
-    public String getNumberOfVotes() {
-        return numberOfVotes;
-    }
-
-    public void setNumberOfVotes(String numberOfVotes) {
-        this.numberOfVotes = numberOfVotes;
+    public String getVoteCount() {
+        return voteCount;
     }
 }

@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,11 +22,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.brafinney.myapplication.R;
+import com.example.brafinney.myapplication.initializers.MyActivity;
+import com.example.brafinney.myapplication.interfaces.ContestantResponse;
 import com.example.brafinney.myapplication.models.Contestant;
 import com.example.brafinney.myapplication.receiver.AlarmReceiver;
 import com.example.brafinney.myapplication.utils.Globall;
 
 import java.util.GregorianCalendar;
+import java.util.List;
+
+import androidsdk.devless.io.devless.main.Devless;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     Contestant contestant;
     String shortCodeBb, timesBb;
     Spinner spinner;
+    MyActivity app;
+    Devless devless;
 
     public static final String SHORT_CODE = "SHORTCODE";
     public static final String TIMES = "TIMES";
@@ -50,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sp = getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         editor = sp.edit();
+        app = (MyActivity)getApplication();
+        devless = app.getDevless();
+        devless.addUserToken(sp);
+
+        if(!(sp.contains(Globall.LOGIN_KEY )|| sp.contains(Globall.SIGN_UP_KEY))){
+
+            startActivity(new Intent(this, LoginActivity.class));
+        }
 
         contestant  = (Contestant)getIntent().getSerializableExtra(ChooseContestant.SELECTED_CONTESTANT);
         shortCodeBb = getIntent().getStringExtra(ChooseContestant.SHORTCODE_BROUGHT_BACK);
@@ -66,9 +82,10 @@ public class MainActivity extends AppCompatActivity {
         //Initialize Spinner and set things up
         spinner = (Spinner) findViewById(R.id.spinner2);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, Globall.list);
+                R.layout.spinner_row, Globall.list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
         spinner.setAdapter(dataAdapter);
+
 
 
 
@@ -136,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        //get contestatnts
+
+       //Globall.getContestantsString(devless);
+
 
 
 
@@ -158,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "It is either you do not have enough credit to send these texts or there " +
                             "is no service at your current location or you possibly entered" +
                             " a wrong number. Please check and try again", Toast.LENGTH_LONG).show();
-
 
                 }
 
@@ -197,4 +217,5 @@ public class MainActivity extends AppCompatActivity {
     public  void scheduleMessages(View v){
         startActivity(new Intent(getApplicationContext(), ScheduleActivity.class));
     }
+
 }

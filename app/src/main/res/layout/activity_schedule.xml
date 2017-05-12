@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:padding="16dp"
 
     tools:context="com.example.brafinney.myapplication.activities.ScheduleActivity">
 
@@ -23,10 +24,10 @@
         android:layout_gravity="center_horizontal" />
 
     <TextView
-        android:text="Schedule Messages For Your nini"
+        android:text="Schedule Messages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="8pt"
+        android:textSize="10pt"
         android:layout_gravity="center"
         android:textColor="#fff"
         android:layout_margin="20dp"
@@ -58,7 +59,7 @@
             android:id="@+id/tvSelectContacts"
             android:layout_gravity="bottom"
             android:textColor="#fff"
-            android:text="select contact"
+            android:text="Select Contact"
             android:layout_marginTop="10px"
             android:layout_marginLeft="10px"/>
     </LinearLayout>
@@ -80,7 +81,7 @@
         android:id="@+id/spinnerSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50px"
+        android:layout_marginTop="10px"
         android:layout_marginBottom="20dp"/>
 
 
@@ -92,9 +93,9 @@
 
         android:layout_below="@+id/tlpassword"
 
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         card_view:cardCornerRadius="2dp"
-        android:layout_margin="20px"
+
 
         card_view:cardElevation="8dp">
 

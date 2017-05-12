@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':dv-android-sdk-1.0'

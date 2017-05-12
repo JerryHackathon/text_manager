@@ -7,9 +7,16 @@ import java.io.Serializable;
  */
 
 public class Contestant implements Serializable {
-    private String id, name, image_url;
+    private String id, user_id ,name, image_url;
 
     public Contestant(String name, String image_url) {
+        this.name = name;
+        this.image_url = image_url;
+    }
+
+    public Contestant(String id, String user_id, String name, String image_url) {
+        this.id = id;
+        this.user_id = user_id;
         this.name = name;
         this.image_url = image_url;
     }
@@ -34,5 +41,13 @@ public class Contestant implements Serializable {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getUser_id() {
+        return user_id;
     }
 }

@@ -43,7 +43,7 @@ public class ScheduleActivity extends AppCompatActivity {
 
         //Initialize Spinner and set things up
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, Globall.listSchedule);
+                R.layout.spinner_row, Globall.listSchedule);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
         spinner.setAdapter(dataAdapter);
 
@@ -55,11 +55,17 @@ public class ScheduleActivity extends AppCompatActivity {
         });
 
         btnScheduler.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Globall.herNumber = etHerPhoneNumber.getText().toString().trim();
                 Globall.herMessage = etHerMessage.getText().toString().trim();
-                scheduleAlarm(Integer.parseInt((String)spinner.getSelectedItem()));
+                //TODO: Handle empty errors
+                if(validateSchedule()){
+                    scheduleAlarm(Integer.parseInt((String) spinner.getSelectedItem()));
+                } else {
+                    Globall.toast(ScheduleActivity.this, "Error: Some fields appear to be empty", true);
+                }
             }
         });
 
@@ -98,5 +104,14 @@ public class ScheduleActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    public boolean validateSchedule(){
+
+        if(spinner.getSelectedItem().equals("") || spinner.getSelectedItem().equals(Globall.listSchedule.get(0)) ||  Globall.herMessage.length() < 1 || Globall.herNumber.length() < 1){
+            return false;
+        } else {
+            return true;
+        }
     }
 }
